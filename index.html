@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cr3dentials Droplinked — Business Financing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0A0A0A;--bg-raised:#111111;--bg-card:rgba(20,20,20,0.6);
+  --teal:#2BCFA1;--teal-hover:#06C295;--teal-glow:rgba(43,207,161,0.15);
+  --purple:#C5A3FF;--purple-glow:rgba(197,163,255,0.1);
+  --border:#1a1a1a;--border-light:#262626;
+  --text:#FFFFFF;--text-dim:#9A9A9A;--text-muted:#5A5A5A;
+  --radius:10px;--radius-lg:20px;
+}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{
+  font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);
+  line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4,h5,h6{font-family:'Outfit',sans-serif;line-height:1.15;font-weight:700}
+
+/* ── Noise overlay ── */
+body::before{
+  content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
+  opacity:0.025;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:128px 128px;
+}
+
+/* ── Ambient glow blobs ── */
+.glow-wrap{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.glow{position:absolute;border-radius:50%;filter:blur(120px);opacity:0.35;will-change:transform}
+.glow--teal{width:600px;height:600px;background:var(--teal);top:-15%;left:-10%;opacity:0.12;animation:drift 18s ease-in-out infinite}
+.glow--purple{width:500px;height:500px;background:var(--purple);bottom:-10%;right:-8%;opacity:0.08;animation:drift 22s ease-in-out infinite reverse}
+.glow--mid{width:350px;height:350px;background:linear-gradient(135deg,var(--teal),var(--purple));top:40%;left:50%;opacity:0.06;animation:drift 15s ease-in-out infinite 3s}
+@keyframes drift{0%,100%{transform:translate(0,0) scale(1)}25%{transform:translate(40px,-30px) scale(1.05)}50%{transform:translate(-20px,40px) scale(0.95)}75%{transform:translate(30px,20px) scale(1.02)}}
+
+.container{max-width:1200px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+
+/* ── Glass card ── */
+.glass{
+  background:var(--bg-card);
+  border:1px solid var(--border-light);
+  border-radius:var(--radius-lg);
+  backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);
+}
+
+/* ── Navbar ── */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(10,10,10,0.8);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  transition:background 0.3s;
+}
+.nav-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  max-width:1440px;margin:0 auto;padding:0 48px;height:72px;
+}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand-mark{
+  width:36px;height:36px;border-radius:8px;
+  background:linear-gradient(135deg,var(--teal),var(--purple));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Outfit',sans-serif;font-weight:800;font-size:14px;color:var(--bg);
+}
+.brand-text{font-family:'Outfit',sans-serif;font-weight:600;font-size:17px;color:var(--text);letter-spacing:-0.02em}
+.brand-text span{color:var(--text-muted);font-weight:400;margin:0 6px}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{
+  color:var(--text-dim);text-decoration:none;font-size:14px;font-weight:400;
+  transition:color 0.25s;
+}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{
+  background:var(--teal)!important;color:var(--bg)!important;
+  padding:8px 20px;border-radius:8px;font-weight:600!important;font-size:13px!important;
+  transition:background 0.25s,transform 0.25s!important;
+}
+.nav-cta:hover{background:var(--teal-hover)!important;transform:translateY(-1px)}
+
+/* ── Hero ── */
+.hero{
+  padding:140px 0 100px;text-align:center;position:relative;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 16px 6px 8px;border-radius:100px;
+  border:1px solid var(--border-light);background:rgba(43,207,161,0.06);
+  font-size:13px;color:var(--teal);margin-bottom:32px;
+  animation:fadeUp 0.8s ease both;
+}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
+.hero h1{
+  font-size:clamp(40px,6vw,72px);letter-spacing:-0.035em;font-weight:800;
+  max-width:900px;margin:0 auto 24px;
+  animation:fadeUp 0.8s ease 0.1s both;
+}
+.hero h1 .accent{
+  background:linear-gradient(135deg,var(--teal) 0%,var(--purple) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero-sub{
+  font-size:clamp(16px,2vw,19px);color:var(--text-dim);max-width:600px;margin:0 auto 44px;
+  font-weight:300;line-height:1.65;
+  animation:fadeUp 0.8s ease 0.2s both;
+}
+.hero-cta{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--teal);color:var(--bg);font-family:'Outfit',sans-serif;
+  font-weight:600;font-size:16px;padding:16px 36px;border-radius:var(--radius);
+  text-decoration:none;border:none;cursor:pointer;
+  transition:background 0.25s,transform 0.25s,box-shadow 0.25s;
+  box-shadow:0 0 0 0 var(--teal-glow);
+  animation:fadeUp 0.8s ease 0.3s both;
+}
+.hero-cta:hover{
+  background:var(--teal-hover);transform:translateY(-2px);
+  box-shadow:0 8px 40px var(--teal-glow);
+}
+.hero-cta svg{transition:transform 0.25s}
+.hero-cta:hover svg{transform:translateX(3px)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── Divider line ── */
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border-light) 20%,var(--border-light) 80%,transparent);margin:0 auto;max-width:1200px}
+
+/* ── How It Works ── */
+.how{padding:100px 0}
+.section-label{
+  font-size:13px;text-transform:uppercase;letter-spacing:0.12em;
+  color:var(--teal);font-weight:500;margin-bottom:16px;
+}
+.section-title{font-size:clamp(28px,4vw,42px);letter-spacing:-0.03em;margin-bottom:60px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.step{
+  padding:40px 32px;position:relative;overflow:hidden;
+  transition:border-color 0.35s,transform 0.35s;
+}
+.step:hover{border-color:var(--border-light);transform:translateY(-4px)}
+.step-num{
+  font-family:'Outfit',sans-serif;font-size:64px;font-weight:800;
+  background:linear-gradient(180deg,rgba(43,207,161,0.15) 0%,transparent 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  line-height:1;margin-bottom:20px;
+}
+.step-icon{
+  width:52px;height:52px;border-radius:14px;
+  background:linear-gradient(135deg,var(--teal-glow),var(--purple-glow));
+  border:1px solid var(--border-light);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:24px;color:var(--teal);
+}
+.step h3{font-size:20px;margin-bottom:10px;letter-spacing:-0.02em}
+.step p{color:var(--text-dim);font-size:14px;line-height:1.7;font-weight:300}
+.step-connector{
+  display:none;/* visible via pseudo on larger screens */
+}
+
+/* ── Products ── */
+.products{padding:100px 0}
+.product-grid{display:flex;flex-direction:column;gap:16px}
+.product-card{
+  padding:36px 40px;transition:border-color 0.35s;
+  display:grid;grid-template-columns:60px 1fr auto;gap:0 32px;align-items:start;
+}
+.product-card:hover{border-color:var(--border-light)}
+.product-icon{
+  width:56px;height:56px;border-radius:14px;
+  background:var(--teal-glow);border:1px solid var(--border-light);
+  display:flex;align-items:center;justify-content:center;
+  grid-row:1 / 3;
+}
+.product-icon.purple{background:var(--purple-glow)}
+.product-icon.mixed{background:linear-gradient(135deg,var(--teal-glow),var(--purple-glow))}
+.product-card h3{font-size:20px;margin-bottom:8px;letter-spacing:-0.02em}
+.product-card p{color:var(--text-dim);font-size:14px;line-height:1.7;font-weight:300;margin-bottom:0;grid-column:2;max-width:600px}
+.product-card .case-toggle{grid-column:3;grid-row:1;align-self:center}
+.product-card .case-expand{grid-column:2 / -1}
+
+/* Case toggle button */
+.case-toggle{
+  display:inline-flex;align-items:center;gap:6px;
+  background:none;border:1px solid var(--border-light);border-radius:100px;
+  color:var(--text-dim);font-size:13px;font-family:'DM Sans',sans-serif;
+  padding:8px 16px;cursor:pointer;transition:all 0.25s;
+}
+.case-toggle:hover{border-color:var(--teal);color:var(--teal)}
+.case-toggle.open{border-color:var(--teal);color:var(--teal)}
+.case-toggle svg{transition:transform 0.3s}
+.case-toggle.open svg{transform:rotate(180deg)}
+
+/* Expandable case study */
+.case-expand{
+  max-height:0;overflow:hidden;transition:max-height 0.4s ease;
+}
+.case-expand-inner{
+  padding-top:24px;margin-top:20px;border-top:1px solid var(--border-light);
+}
+.case-expand-inner h4{font-size:15px;margin-bottom:10px;letter-spacing:-0.01em;color:var(--text)}
+.case-expand-inner p{color:var(--text-dim);font-size:13px;line-height:1.7;font-weight:300;margin-bottom:20px}
+.case-stats{display:flex;gap:20px}
+.case-stat{flex:1}
+.case-stat-val{font-family:'Outfit',sans-serif;font-size:20px;font-weight:700;line-height:1}
+.case-stat-val.teal{color:var(--teal)}
+.case-stat-val.purple{color:var(--purple)}
+.case-stat-label{font-size:10px;color:var(--text-muted);margin-top:4px;text-transform:uppercase;letter-spacing:0.05em}
+.product-tag{
+  display:inline-block;padding:6px 14px;border-radius:100px;
+  font-size:12px;font-weight:500;letter-spacing:0.02em;
+  color:var(--teal);border:1px solid rgba(43,207,161,0.2);
+  background:rgba(43,207,161,0.05);
+}
+
+@media(max-width:768px){
+  .product-card{grid-template-columns:1fr;gap:16px 0}
+  .product-icon{grid-row:auto}
+  .product-card p{grid-column:1}
+  .product-card .case-toggle{grid-column:1;grid-row:auto;justify-self:start}
+  .product-card .case-expand{grid-column:1}
+  .products{padding:70px 0}
+}
+
+
+/* ── Form Section ── */
+.form-section{padding:100px 0 120px}
+.form-wrapper{max-width:680px;margin:0 auto}
+.form-card{padding:48px 44px}
+.form-card h2{font-size:clamp(24px,3.5vw,32px);letter-spacing:-0.025em;margin-bottom:8px}
+.form-card .form-sub{color:var(--text-dim);font-size:15px;margin-bottom:36px;font-weight:300}
+
+.field{margin-bottom:22px}
+.field label{display:block;font-size:13px;font-weight:500;color:var(--text-dim);margin-bottom:8px;letter-spacing:0.02em}
+.field input,.field select{
+  width:100%;padding:14px 16px;
+  background:rgba(255,255,255,0.03);border:1px solid var(--border-light);
+  border-radius:var(--radius);color:var(--text);font-size:15px;
+  font-family:'DM Sans',sans-serif;
+  transition:border-color 0.25s,background 0.25s,box-shadow 0.25s;
+  outline:none;appearance:none;-webkit-appearance:none;
+}
+.field input::placeholder{color:var(--text-muted)}
+.field input:focus,.field select:focus{
+  border-color:var(--teal);background:rgba(43,207,161,0.03);
+  box-shadow:0 0 0 3px rgba(43,207,161,0.08);
+}
+.field select{
+  background-image:url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%239A9A9A' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 16px center;
+  padding-right:44px;cursor:pointer;
+}
+.field select option{background:var(--bg);color:var(--text)}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+/* Radio group */
+.radio-group{display:flex;gap:12px;margin-top:4px}
+.radio-option{
+  flex:1;position:relative;
+}
+.radio-option input{position:absolute;opacity:0;pointer-events:none}
+.radio-option label{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  padding:14px;border:1px solid var(--border-light);border-radius:var(--radius);
+  cursor:pointer;font-size:14px;color:var(--text-dim);
+  transition:all 0.25s;text-align:center;
+}
+.radio-option input:checked+label{
+  border-color:var(--teal);background:rgba(43,207,161,0.06);color:var(--teal);
+}
+.radio-option label:hover{border-color:var(--text-muted)}
+.radio-dot{
+  width:16px;height:16px;border-radius:50%;border:2px solid var(--border-light);
+  position:relative;transition:border-color 0.25s;flex-shrink:0;
+}
+.radio-dot::after{
+  content:'';position:absolute;inset:3px;border-radius:50%;
+  background:var(--teal);transform:scale(0);transition:transform 0.2s;
+}
+.radio-option input:checked+label .radio-dot{border-color:var(--teal)}
+.radio-option input:checked+label .radio-dot::after{transform:scale(1)}
+
+.submit-btn{
+  width:100%;padding:16px;margin-top:12px;border:none;border-radius:var(--radius);
+  background:var(--teal);color:var(--bg);font-family:'Outfit',sans-serif;
+  font-size:16px;font-weight:600;cursor:pointer;
+  transition:background 0.25s,transform 0.25s,box-shadow 0.25s;
+  position:relative;overflow:hidden;
+}
+.submit-btn:hover{
+  background:var(--teal-hover);transform:translateY(-1px);
+  box-shadow:0 6px 30px var(--teal-glow);
+}
+.submit-btn:active{transform:translateY(0)}
+.submit-btn.loading{pointer-events:none;opacity:0.8}
+.submit-btn .spinner{
+  display:none;width:20px;height:20px;border:2px solid rgba(10,10,10,0.2);
+  border-top-color:var(--bg);border-radius:50%;animation:spin 0.6s linear infinite;
+  margin:0 auto;
+}
+.submit-btn.loading .btn-text{display:none}
+.submit-btn.loading .spinner{display:block}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Success state */
+.success-msg{
+  display:none;text-align:center;padding:60px 32px;
+}
+.success-msg.show{display:block;animation:fadeUp 0.6s ease}
+.success-icon{
+  width:72px;height:72px;border-radius:50%;margin:0 auto 24px;
+  background:linear-gradient(135deg,var(--teal-glow),rgba(43,207,161,0.08));
+  border:2px solid var(--teal);
+  display:flex;align-items:center;justify-content:center;
+}
+.success-msg h3{font-size:24px;margin-bottom:10px;letter-spacing:-0.02em}
+.success-msg p{color:var(--text-dim);font-size:15px;max-width:400px;margin:0 auto;font-weight:300}
+
+/* ── Footer ── */
+footer{
+  border-top:1px solid var(--border);padding:40px 0;
+}
+.footer-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:16px;
+}
+.footer-left{font-size:13px;color:var(--text-muted)}
+.footer-links{display:flex;gap:24px}
+.footer-links a{color:var(--text-muted);text-decoration:none;font-size:13px;transition:color 0.25s}
+.footer-links a:hover{color:var(--text-dim)}
+
+/* ── Scroll reveal ── */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ── Responsive ── */
+@media(max-width:768px){
+  .steps{grid-template-columns:1fr}
+  .field-row{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .hero{padding:100px 0 70px}
+  .form-card{padding:32px 24px}
+  .how{padding:70px 0}
+  .form-section{padding:70px 0 90px}
+}
+@media(max-width:480px){
+  .hero h1{font-size:32px}
+  .hero-sub{font-size:15px}
+  .radio-group{flex-direction:column;gap:8px}
+}
+</style>
+</head>
+<body>
+
+<div class="glow-wrap">
+  <div class="glow glow--teal"></div>
+  <div class="glow glow--purple"></div>
+  <div class="glow glow--mid"></div>
+</div>
+
+<!-- ── Nav ── -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="brand">
+      <div class="brand-text">Cr3dentials <span>&</span> Droplinked</div>
+    </a>
+    <div class="nav-links">
+      <a href="#how">How It Works</a>
+      <a href="#apply" class="nav-cta">Get Started</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Hero ── -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Now accepting applications
+    </div>
+    <h1>Verify Your Store.<br><span class="accent">Fund Your Future.</span></h1>
+    <p class="hero-sub">Connect your revenue and inventory data through Cr3dentials. Get matched with lenders who understand how your business operates.</p>
+    <a href="#apply" class="hero-cta">
+      Pre-Qualify Now
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── Financing Products ── -->
+<section class="products" id="products">
+  <div class="container">
+    <div class="section-label reveal">What We Offer</div>
+    <h2 class="section-title reveal">Financing built around your business</h2>
+    <p class="section-subtitle reveal" style="color:var(--text-dim);font-size:16px;margin-top:-44px;margin-bottom:60px;font-weight:300">$50K to $10M in funding for your business in less than 24 hours.</p>
+    <div class="product-grid">
+      <div class="product-card glass reveal">
+        <div class="product-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 17 12 22 22 17"/><path d="M2 12 12 17 22 12"/><path d="M12 2 2 7 12 12 22 7 12 2Z"/></svg>
+        </div>
+        <h3>Revenue-Based Financing</h3>
+        <p>Get capital based on your actual revenue. Repayments flex with your sales — when business is slow, you pay less. No fixed monthly burden.</p>
+        <button class="case-toggle" onclick="toggleCase(this)">See Example <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="case-expand">
+          <div class="case-expand-inner">
+            <h4>DTC skincare brand scaling past $1M/year</h4>
+            <p>A Shopify-based skincare company needed growth capital but didn't want to give up equity. They verified 12 months of revenue through Cr3dentials and received 3 competing offers within 48 hours.</p>
+            <div class="case-stats">
+              <div class="case-stat"><div class="case-stat-val teal">$350K</div><div class="case-stat-label">Funded</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="product-card glass reveal">
+        <div class="product-icon purple">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+        </div>
+        <h3>Inventory Financing</h3>
+        <p>Fund your next purchase order or restock without draining cash flow. Use your existing inventory as leverage to unlock working capital.</p>
+        <button class="case-toggle" onclick="toggleCase(this)">See Example <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="case-expand">
+          <div class="case-expand-inner">
+            <h4>Electronics reseller preparing for Q4 demand</h4>
+            <p>An electronics retailer needed to place a large purchase order ahead of holiday season but couldn't tie up cash. They used verified inventory data to secure financing against existing stock.</p>
+            <div class="case-stats">
+              <div class="case-stat"><div class="case-stat-val purple">$800K</div><div class="case-stat-label">Funded</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="product-card glass reveal">
+        <div class="product-icon mixed">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="url(#grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="var(--teal)"/><stop offset="100%" stop-color="var(--purple)"/></linearGradient></defs><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Affiliate Financing</h3>
+        <p>Monetize your affiliate network. Get upfront capital based on your projected affiliate earnings and scale your partnerships faster.</p>
+        <button class="case-toggle" onclick="toggleCase(this)">See Example <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="case-expand">
+          <div class="case-expand-inner">
+            <h4>SaaS company monetizing its partner network</h4>
+            <p>A B2B SaaS platform had strong affiliate revenue but needed upfront capital to expand its partner program. Verified affiliate earnings unlocked funding without touching their core revenue.</p>
+            <div class="case-stats">
+              <div class="case-stat"><div class="case-stat-val teal">$200K</div><div class="case-stat-label">Funded</div></div>
+              <div class="case-stat"><div class="case-stat-val teal">36 hrs</div><div class="case-stat-label">To Offer</div></div>
+              <div class="case-stat"><div class="case-stat-val teal">3</div><div class="case-stat-label">Lenders</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── How It Works ── -->
+<section class="how" id="how">
+  <div class="container">
+    <div class="section-label reveal">How It Works</div>
+    <h2 class="section-title reveal">Three steps to funding</h2>
+    <div class="steps">
+      <div class="step glass reveal">
+        <div class="step-num">01</div>
+        <div class="step-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>
+        </div>
+        <h3>Apply</h3>
+        <p>Complete a short pre-qualification form with basic details about your business and financing needs.</p>
+      </div>
+      <div class="step glass reveal">
+        <div class="step-num">02</div>
+        <div class="step-icon" style="color:var(--purple)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
+        <h3>Verify</h3>
+        <p>Connect your Shopify, Stripe, or payment gateway and we'll verify your revenue and inventory data instantly.</p>
+      </div>
+      <div class="step glass reveal">
+        <div class="step-num">03</div>
+        <div class="step-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg>
+        </div>
+        <h3>Get Funded</h3>
+        <p>Receive a tailored financing offer based on your verified business performance — fast, transparent, no hidden fees.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── Form ── -->
+<section class="form-section" id="apply">
+  <div class="container">
+    <div class="form-wrapper">
+      <div class="form-card glass reveal">
+        <form id="qualify-form">
+          <h2>Pre-Qualify Your Business</h2>
+          <p class="form-sub">Takes less than 2 minutes. No credit check required.</p>
+
+          <div class="field">
+            <label for="business">Business Name</label>
+            <input type="text" id="business" name="business" placeholder="Your company name" required>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="industry">Industry</label>
+              <select id="industry" name="industry" required>
+                <option value="" disabled selected>Select industry</option>
+                <option>E-commerce</option>
+                <option>SaaS</option>
+                <option>Retail</option>
+                <option>Manufacturing</option>
+                <option>Services</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="revenue">Monthly Revenue</label>
+              <select id="revenue" name="revenue" required>
+                <option value="" disabled selected>Select range</option>
+                <option>Under $10K</option>
+                <option>$10K – $50K</option>
+                <option>$50K – $100K</option>
+                <option>$100K – $500K</option>
+                <option>$500K+</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="years">Time in Business</label>
+              <select id="years" name="years" required>
+                <option value="" disabled selected>Select</option>
+                <option>Less than 1 year</option>
+                <option>1 – 2 years</option>
+                <option>2 – 5 years</option>
+                <option>5+ years</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="amount">Financing Needed</label>
+              <select id="amount" name="amount" required>
+                <option value="" disabled selected>Select amount</option>
+                <option>$50K – $250K</option>
+                <option>$250K – $500K</option>
+                <option>$500K – $1M</option>
+                <option>$1M – $5M</option>
+                <option>$5M – $10M</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Do you sell through Droplinked or similar Web3 commerce platforms?</label>
+            <div class="radio-group">
+              <div class="radio-option">
+                <input type="radio" id="web3-yes" name="web3" value="yes" required>
+                <label for="web3-yes"><span class="radio-dot"></span> Yes</label>
+              </div>
+              <div class="radio-option">
+                <input type="radio" id="web3-no" name="web3" value="no">
+                <label for="web3-no"><span class="radio-dot"></span> No</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="you@company.com" required>
+          </div>
+
+          <button type="submit" class="submit-btn">
+            <span class="btn-text">Submit Application</span>
+            <div class="spinner"></div>
+          </button>
+        </form>
+
+        <div class="success-msg" id="success">
+          <div class="success-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          </div>
+          <h3>Application Received</h3>
+          <p>We'll review your information and reach out within 24–48 hours with next steps. Check your inbox.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-left">&copy; 2026 Cr3dentials &times; Droplinked. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="https://www.cr3dentials.xyz" target="_blank">Cr3dentials</a>
+        <a href="https://droplinked.com" target="_blank">Droplinked</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── Scroll reveal ──
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.15 });
+reveals.forEach(el => observer.observe(el));
+
+// ── Case study toggle ──
+function toggleCase(btn) {
+  const expand = btn.nextElementSibling;
+  const isOpen = btn.classList.contains('open');
+  btn.classList.toggle('open');
+  btn.textContent = '';
+  btn.innerHTML = (isOpen ? 'See Example' : 'Hide Example') + ' <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>';
+  if (isOpen) {
+    btn.querySelector('svg').style.transform = '';
+  } else {
+    btn.querySelector('svg').style.transform = 'rotate(180deg)';
+  }
+  if (isOpen) {
+    expand.style.maxHeight = '0';
+  } else {
+    expand.style.maxHeight = expand.scrollHeight + 'px';
+  }
+}
+
+// ── Form submission ──
+const form = document.getElementById('qualify-form');
+const btn = form.querySelector('.submit-btn');
+const success = document.getElementById('success');
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  btn.classList.add('loading');
+
+  // Simulate network request
+  setTimeout(() => {
+    form.style.display = 'none';
+    success.classList.add('show');
+    btn.classList.remove('loading');
+  }, 1400);
+});
+</script>
+</body>
+</html>
