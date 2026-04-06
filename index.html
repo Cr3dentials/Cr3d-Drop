@@ -502,7 +502,10 @@ footer{
   <div class="container">
     <div class="form-wrapper">
       <div class="form-card glass reveal">
-        <form id="qualify-form">
+        <form id="qualify-form" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="15a793f7-e73d-4b7d-bc6d-62ad6fb9e56c">
+          <input type="hidden" name="subject" value="New Cr3dentials x Droplinked Application">
+          <input type="hidden" name="redirect" value="">
           <h2>Pre-Qualify Your Business</h2>
           <p class="form-sub">Takes less than 2 minutes. No credit check required.</p>
 
@@ -652,12 +655,22 @@ form.addEventListener('submit', (e) => {
   e.preventDefault();
   btn.classList.add('loading');
 
-  // Simulate network request
-  setTimeout(() => {
-    form.style.display = 'none';
-    success.classList.add('show');
-    btn.classList.remove('loading');
-  }, 1400);
+  const formData = new FormData(form);
+  fetch(form.action, { method: 'POST', body: formData })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        form.style.display = 'none';
+        success.classList.add('show');
+      } else {
+        alert('Something went wrong. Please try again.');
+      }
+      btn.classList.remove('loading');
+    })
+    .catch(() => {
+      alert('Something went wrong. Please try again.');
+      btn.classList.remove('loading');
+    });
 });
 </script>
 </body>
