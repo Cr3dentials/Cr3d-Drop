@@ -286,6 +286,34 @@ nav{
 .radio-option input:checked+label .radio-dot{border-color:var(--teal)}
 .radio-option input:checked+label .radio-dot::after{transform:scale(1)}
 
+/* Checkbox group */
+.checkbox-group{display:flex;flex-direction:column;gap:10px;margin-top:4px}
+.checkbox-option{position:relative}
+.checkbox-option input{position:absolute;opacity:0;pointer-events:none}
+.checkbox-option label{
+  display:flex;align-items:center;gap:10px;
+  padding:14px 16px;border:1px solid var(--border-light);border-radius:var(--radius);
+  cursor:pointer;font-size:14px;color:var(--text-dim);
+  transition:all 0.25s;
+}
+.checkbox-option label:hover{border-color:var(--text-muted)}
+.checkbox-option input:checked+label{
+  border-color:var(--teal);background:rgba(43,207,161,0.06);color:var(--teal);
+}
+.check-box{
+  width:16px;height:16px;border-radius:4px;border:2px solid var(--border-light);
+  position:relative;transition:all 0.25s;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+}
+.check-box::after{
+  content:'';width:8px;height:5px;
+  border-left:2px solid var(--teal);border-bottom:2px solid var(--teal);
+  transform:rotate(-45deg) scale(0);transition:transform 0.2s;
+  margin-top:-2px;
+}
+.checkbox-option input:checked+label .check-box{border-color:var(--teal)}
+.checkbox-option input:checked+label .check-box::after{transform:rotate(-45deg) scale(1)}
+
 .submit-btn{
   width:100%;padding:16px;margin-top:12px;border:none;border-radius:var(--radius);
   background:var(--teal);color:var(--bg);font-family:'Outfit',sans-serif;
@@ -503,6 +531,29 @@ footer{
             <input type="text" id="business" name="business" placeholder="Your company name" required>
           </div>
 
+          <div class="field">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="you@company.com" required>
+          </div>
+
+          <div class="field">
+            <label>Type of Financing</label>
+            <div class="checkbox-group">
+              <div class="checkbox-option">
+                <input type="checkbox" id="fin-revenue" name="financing_type" value="Revenue-Based Financing">
+                <label for="fin-revenue"><span class="check-box"></span> Revenue-Based Financing</label>
+              </div>
+              <div class="checkbox-option">
+                <input type="checkbox" id="fin-inventory" name="financing_type" value="Inventory Financing">
+                <label for="fin-inventory"><span class="check-box"></span> Inventory Financing</label>
+              </div>
+              <div class="checkbox-option">
+                <input type="checkbox" id="fin-affiliate" name="financing_type" value="Affiliate Financing">
+                <label for="fin-affiliate"><span class="check-box"></span> Affiliate Financing</label>
+              </div>
+            </div>
+          </div>
+
           <div class="field-row">
             <div class="field">
               <label for="industry">Industry</label>
@@ -565,11 +616,6 @@ footer{
                 <label for="web3-no"><span class="radio-dot"></span> No</label>
               </div>
             </div>
-          </div>
-
-          <div class="field">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="you@company.com" required>
           </div>
 
           <button type="submit" class="submit-btn">
